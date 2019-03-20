@@ -430,3 +430,8 @@ end
 AddEventHandler('esx_society:openBossMenu', function(society, close, options)
 	OpenBossMenu(society, close, options)
 end)
+
+RegisterNetEvent('esx:showSocietyNotification')
+AddEventHandler('esx:showSocietyNotification', function(msg,...)
+	ESX.ShowNotification(_U(msg,...))
+end)

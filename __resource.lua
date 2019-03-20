@@ -8,10 +8,8 @@ server_scripts {
 	'@mysql-async/lib/MySQL.lua',
 	'@es_extended/locale.lua',
 	'locales/en.lua',
-	'locales/fi.lua',
-	'locales/fr.lua',
-	'locales/sv.lua',
-	'locales/pl.lua',
+	'locales/cn.lua',
+	'locales/zh.lua',
 	'config.lua',
 	'server/main.lua'
 }
@@ -19,11 +17,10 @@ server_scripts {
 client_scripts {
 	'@es_extended/locale.lua',
 	'locales/en.lua',
-	'locales/fi.lua',
-	'locales/fr.lua',
-	'locales/sv.lua',
-	'locales/pl.lua',
+	'locales/cn.lua',
+	'locales/zh.lua',
 	'config.lua',
+	'@es_extended/i18n.lua',
 	'client/main.lua'
 }
 

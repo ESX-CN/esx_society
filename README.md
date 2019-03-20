@@ -1,39 +1,34 @@
 # esx_society
-Society management for ESX. Adds employee management (hire, fire, promote / demote, change salary), society bank accounts and money washing. It's crucial that this script gets started before all resources that utilize societies do, or else many things will go wrong.
+ESX的社会化管理。增加员工管理（雇用，解雇，升级/降级，更改工资），社会银行账户和洗钱。在使用社团的所有资源之前启动此脚本至关重要，否则很多事情都会出错。（纯机翻，我到现在还没完全理解这个插件到底该怎么翻译才算合适）
 
-## Requirements
+## 要求
 - [cron](https://github.com/ESX-Org/cron)
-- [esx_addonaccount](https://github.com/ESX-Org/esx_addonaccount)
+- [esx_addonaccount](https://github.com/ESX-CN/esx_addonaccount)
 
-## Download & Installation
+## 下载 & 安装
 
-### Using [fvm](https://github.com/qlaffont/fvm-installer)
-```
-fvm install --save --folder=esx esx-org/esx_society
-```
-
-### Using Git
+### 使用Git
 ```
 cd resources
-git clone https://github.com/ESX-Org/esx_society [esx]/esx_society
+git clone https://github.com/ESX-CN/esx_society [esx]/esx_society
 ```
 
-### Manually
-- Download https://github.com/ESX-Org/esx_society/archive/master.zip
-- Put it in the `[esx]` directory
+### 手动
+- 下载 https://github.com/ESX-CN/esx_society/archive/master.zip
+- 解压至 `[esx]` 目录
 
-## Installation
-- Import `esx_society.sql` in your database
-- Add this in your `server.cfg`:
+## 安装
+- 将 `esx_society.sql` 导入你的数据库
+- 添加如下至你的 `server.cfg` 文件:
 
 ```
 start esx_society
 ```
 
-## Explanation
-ESX Society works with addon accounts named 'society_xxx', for example 'society_taxi' or 'society_realestateagent'. If you job grade is 'boss' the society money will be displayed in your hud.
+## 说明
+ESX Society使用名为 `society_xxx` 的账户, 例如 `society_taxi` 或 `society_realestateagent`. 如果你的职位是 `boss` 社会资金将显示在您的hud中。
 
-## Usage
+## 使用案例
 ```lua
 local society = 'taxi'
 local amount  = 100
