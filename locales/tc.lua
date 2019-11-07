@@ -1,4 +1,4 @@
-Locales['zh'] = {
+Locales['tc'] = {
   ['actions']                = '操作',
   ['boss_menu']              = 'BOSS菜單',
   ['money_generic']          = '$%s',
