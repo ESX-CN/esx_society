@@ -27,6 +27,7 @@ MySQL.ready(function()
 	end
 end)
 
+RegisterServerEvent('esx_society:registerSociety')
 AddEventHandler('esx_society:registerSociety', function(name, label, account, datastore, inventory, data)
 	local found = false
 
