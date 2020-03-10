@@ -234,7 +234,16 @@ function OpenEmployeeList(society)
 		}
 
 		for i=1, #employees, 1 do
-			local gradeLabel = (employees[i].job.grade_label == '' and employees[i].job.label or employees[i].job.grade_label)
+			if Config.Locale == 'sc' then
+				local gradeLabel = (employees[i].job.grade_label_sc == '' and employees[i].job.label_sc or employees[i].job.grade_label_sc)
+				employees[i].name = employees[i].name_cn
+			elseif Config.Locale == 'tc' then
+				local gradeLabel = (employees[i].job.grade_label_tc == '' and employees[i].job.label_tc or employees[i].job.grade_label_tc)
+				employees[i].name = employees[i].name_cn
+			else
+				local gradeLabel = (employees[i].job.grade_label == '' and employees[i].job.label or employees[i].job.grade_label)
+			end
+			
 
 			table.insert(elements.rows, {
 				data = employees[i],

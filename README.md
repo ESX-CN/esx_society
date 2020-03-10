@@ -4,6 +4,7 @@ ESX的社会化管理。增加员工管理（雇用，解雇，升级/降级，�
 ## 要求
 - [cron](https://github.com/ESX-Org/cron)
 - [esx_addonaccount](https://github.com/ESX-CN/esx_addonaccount)
+- [esx_identity](https://github.com/ESX-Org/esx_identity)
 
 ## 下载 & 安装
 

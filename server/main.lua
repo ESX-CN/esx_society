@@ -173,52 +173,32 @@ ESX.RegisterServerCallback('esx_society:getSocietyMoney', function(source, cb, s
 end)
 
 ESX.RegisterServerCallback('esx_society:getEmployees', function(source, cb, society)
-	if Config.EnableESXIdentity then
+	MySQL.Async.fetchAll('SELECT firstname, lastname, identifier, job, job_grade FROM users WHERE job = @job ORDER BY job_grade DESC', {
+		['@job'] = society
+	}, function (results)
+		local employees = {}
 
-		MySQL.Async.fetchAll('SELECT firstname, lastname, identifier, job, job_grade FROM users WHERE job = @job ORDER BY job_grade DESC', {
-			['@job'] = society
-		}, function (results)
-			local employees = {}
+		for i=1, #results, 1 do
+			table.insert(employees, {
+				name       = results[i].firstname .. ' ' .. results[i].lastname,
+				name_cn	   = results[i].lastname .. ' ' .. results[i].firstname,
+				identifier = results[i].identifier,
+				job = {
+					name        	= results[i].job,
+					label       	= Jobs[results[i].job].label,
+					label_sc       	= Jobs[results[i].job].label_sc,
+					label_tc    	= Jobs[results[i].job].label_tc,
+					grade       	= results[i].job_grade,
+					grade_name  	= Jobs[results[i].job].grades[tostring(results[i].job_grade)].name,
+					grade_label 	= Jobs[results[i].job].grades[tostring(results[i].job_grade)].label,
+					grade_label_sc 	= Jobs[results[i].job].grades[tostring(results[i].job_grade)].label_sc,
+					grade_label_tc 	= Jobs[results[i].job].grades[tostring(results[i].job_grade)].label_tc
+				}
+			})
+		end
 
-			for i=1, #results, 1 do
-				table.insert(employees, {
-					name       = results[i].firstname .. ' ' .. results[i].lastname,
-					identifier = results[i].identifier,
-					job = {
-						name        = results[i].job,
-						label       = Jobs[results[i].job].label,
-						grade       = results[i].job_grade,
-						grade_name  = Jobs[results[i].job].grades[tostring(results[i].job_grade)].name,
-						grade_label = Jobs[results[i].job].grades[tostring(results[i].job_grade)].label
-					}
-				})
-			end
-
-			cb(employees)
-		end)
-	else
-		MySQL.Async.fetchAll('SELECT name, identifier, job, job_grade FROM users WHERE job = @job ORDER BY job_grade DESC', {
-			['@job'] = society
-		}, function (result)
-			local employees = {}
-
-			for i=1, #result, 1 do
-				table.insert(employees, {
-					name       = result[i].name,
-					identifier = result[i].identifier,
-					job = {
-						name        = result[i].job,
-						label       = Jobs[result[i].job].label,
-						grade       = result[i].job_grade,
-						grade_name  = Jobs[result[i].job].grades[tostring(result[i].job_grade)].name,
-						grade_label = Jobs[result[i].job].grades[tostring(result[i].job_grade)].label
-					}
-				})
-			end
-
-			cb(employees)
-		end)
-	end
+		cb(employees)
+	end)
 end)
 
 ESX.RegisterServerCallback('esx_society:getJob', function(source, cb, society)
